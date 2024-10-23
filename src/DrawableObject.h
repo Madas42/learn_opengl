@@ -17,7 +17,6 @@ public:
     void draw();
 private:
     Model* model;
-    Transformation transform;
     ShaderProgram* shaderProgram;
 };
 

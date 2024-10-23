@@ -11,8 +11,10 @@ std::vector<float> vertices1 = {
 };
 
 Scene::Scene() {
-    DrawableObject* object1 = new DrawableObject(vertices1);
+    shaderProgram = new ShaderProgram("shaders/vertexShaderTriangle.glsl", "shaders/fragmentShaderTriangle.glsl");
+    DrawableObject* object1 = new DrawableObject(vertices1, shaderProgram);
     objects.push_back(object1);
+    printf("Scene created\n");
 }
 
 Scene::~Scene() {
@@ -26,6 +28,7 @@ void Scene::addObject(DrawableObject* object) {
 }
 
 void Scene::render() {
+    shaderProgram->use();
     for (auto object : objects) {
         object->draw();
     }

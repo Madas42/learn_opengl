@@ -30,6 +30,12 @@ set(HEADERS
         src/ShaderProgram.h
 )
 
+# Shader files
+set(SHADERS
+        shaders/vertexShaderTriangle.glsl
+        shaders/fragmentShaderTriangle.glsl
+)
+
 add_executable(learn_opengl ${SOURCES} ${HEADERS})
 
 # Include directories for GLFW and GLM
@@ -47,3 +53,6 @@ target_link_libraries(learn_opengl /opt/homebrew/opt/glew/lib/libGLEW.dylib)
 target_link_libraries(learn_opengl "-framework Cocoa")
 target_link_libraries(learn_opengl "-framework OpenGL")
 target_link_libraries(learn_opengl "-framework IOKit")
+
+# Copy shader files to the build directory
+file(COPY ${SHADERS} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/shaders)

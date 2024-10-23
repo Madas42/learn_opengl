@@ -4,9 +4,9 @@
 
 #include "ShaderProgram.h"
 
-ShaderProgram::ShaderProgram(const char* vertexShaderSource, const char* fragmentShaderSource) {
-    Shader vertexShader(GL_VERTEX_SHADER, vertexShaderSource);
-    Shader fragmentShader(GL_FRAGMENT_SHADER, fragmentShaderSource);
+ShaderProgram::ShaderProgram(const char* vertexShaderPath, const char* fragmentShaderPath) {
+    Shader vertexShader(GL_VERTEX_SHADER, Shader::loadShaderSource(vertexShaderPath));
+    Shader fragmentShader(GL_FRAGMENT_SHADER, Shader::loadShaderSource(fragmentShaderPath));
 
     id = glCreateProgram();
     glAttachShader(id, vertexShader.getID());
@@ -14,6 +14,7 @@ ShaderProgram::ShaderProgram(const char* vertexShaderSource, const char* fragmen
     glLinkProgram(id);
 
     checkCompileErrors(id, "PROGRAM");
+    printf("Shader program created\n");
 }
 
 ShaderProgram::~ShaderProgram() {
@@ -28,7 +29,7 @@ GLuint ShaderProgram::getID() const {
     return id;
 }
 
-void ShaderProgram::checkCompileErrors(GLuint shader, const std::string& type) {
+void ShaderProgram::checkCompileErrors(GLuint shader, const char* type) {
     GLint success;
     GLchar infoLog[1024];
 
@@ -36,13 +37,13 @@ void ShaderProgram::checkCompileErrors(GLuint shader, const std::string& type) {
         glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
         if (!success) {
             glGetShaderInfoLog(shader, 1024, nullptr, infoLog);
-            printf("ERROR::SHADER_COMPILATION_ERROR of type: %s\n%s\n", type.c_str(), infoLog);
+            printf("ERROR::SHADER_COMPILATION_ERROR of type: %s\n%s\n", type, infoLog);
         }
     } else {
         glGetProgramiv(shader, GL_LINK_STATUS, &success);
         if (!success) {
             glGetProgramInfoLog(shader, 1024, nullptr, infoLog);
-            printf("ERROR::SHADER_LINKING_ERROR of type: %s\n%s\n", type.c_str(), infoLog);
+            printf("ERROR::SHADER_LINKING_ERROR of type: %s\n%s\n", type, infoLog);
         }
     }
 }

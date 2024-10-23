@@ -8,20 +8,13 @@
 #include <iostream>
 #include "Shader.h"
 
-const char* vertexShaderSource = "#version 330 core\n"
-    "layout (location = 0) in vec3 aPos;\n"
-    "void main()\n"
-    "{\n"
-    "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-    "}\0";
-
 class ShaderProgram {
 private:
     GLuint id;
-    void checkCompileErrors(GLuint shader, const std::string& type);
+    void checkCompileErrors(GLuint shader, const char* type);
 
 public:
-    ShaderProgram(const char* vertexShaderSource, const char* fragmentShaderSource);
+    ShaderProgram(const char* vertexShaderPath, const char* fragmentShaderPath);
     ~ShaderProgram();
 
     void use() const;

@@ -6,6 +6,8 @@
 #define SHADER_H
 #include <GL/glew.h>
 #include <iostream>
+#include <fstream>
+#include <sstream>
 
 
 class Shader {
@@ -14,9 +16,11 @@ public:
     ~Shader();
 
     GLuint getID() const;
+    static char* loadShaderSource(const char* filePath);
 
 private:
     GLuint id;
+
     void checkCompileErrors(GLuint shader, const char* type);
 };
 
