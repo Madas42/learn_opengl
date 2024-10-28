@@ -4,9 +4,9 @@
 
 #include "DrawableObject.h"
 
-DrawableObject::DrawableObject(const std::vector<float>& verticies, ShaderProgram* shader) {
+DrawableObject::DrawableObject(const std::vector<float>& verticies, ShaderProgram* shaderPro) {
     model = new Model(verticies);
-    shaderProgram = shader;
+    shaderProgram = shaderPro;
     printf("Object created\n");
 }
 

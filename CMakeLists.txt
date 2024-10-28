@@ -56,3 +56,7 @@ target_link_libraries(learn_opengl "-framework IOKit")
 
 # Copy shader files to the build directory
 file(COPY ${SHADERS} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/shaders)
+
+# Copy models to build directory
+file(GLOB MODELS "models/*")
+file(COPY ${MODELS} DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/models)

@@ -14,11 +14,13 @@ public:
     ~Scene();
 
     void addObject(DrawableObject* object);
+    void addShaderProgram(ShaderProgram* shaderProgram);
     void render();
+    const std::vector<ShaderProgram*>& getShaderPrograms() const;
 
 private:
     std::vector<DrawableObject*> objects;
-    ShaderProgram* shaderProgram;
+    std::vector<ShaderProgram*> shaderPrograms;
 };
 
 #endif //SCENE_H

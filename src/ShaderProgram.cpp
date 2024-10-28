@@ -48,3 +48,7 @@ void ShaderProgram::checkCompileErrors(GLuint shader, const char* type) {
     }
 }
 
+void ShaderProgram::setProjectionMatrix(const glm::mat4& projectionMatrix) const {
+    GLint projLoc = glGetUniformLocation(id, "projection");
+    glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+}

@@ -12,12 +12,21 @@
 
 class Application {
 public:
+    void init();
+    void createShaders();
+    void createModels();
     void run();
+    static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 
 private:
-    void static framebuffer_size_callback(GLFWwindow* window, int width, int height);
-    void processInput(GLFWwindow* window);
+    int width = 800;
+    int height = 600;
+    GLFWwindow* window;
+    Scene scene;
+    ShaderProgram* shaderProgram;
+    DrawableObject* object;
 
+    static void processInput(GLFWwindow* window);
 };
 
 

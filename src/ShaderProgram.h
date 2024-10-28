@@ -4,6 +4,7 @@
 
 #ifndef SHADERPROGRAM_H
 #define SHADERPROGRAM_H
+#include <glm/gtc/type_ptr.hpp>
 #include <GL/glew.h>
 #include <iostream>
 #include "Shader.h"
@@ -19,6 +20,7 @@ public:
 
     void use() const;
     GLuint getID() const;
+    void setProjectionMatrix(const glm::mat4& projectionMatrix) const;
 };
 
 

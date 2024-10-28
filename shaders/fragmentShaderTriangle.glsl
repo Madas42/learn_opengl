@@ -1,7 +1,8 @@
 #version 330 core
+in vec3 color;
 out vec4 FragColor;
 
 void main()
 {
-    FragColor = vec4(1.0, 0.2, 0.2, 1.0); // Set the fragment color to a shade of orange
+    FragColor = vec4(color, 1.0);
 }
